@@ -1,0 +1,14 @@
+[project]
+name = "ansi-style"
+version = "0.1.0"
+description = "Terminal colour and style helpers that detect a dumb terminal."
+requires-python = ">=3.10"
+dependencies = []
+readme = "README.md"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
