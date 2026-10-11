@@ -33,3 +33,10 @@ The only environmental input considered is the `TERM` environment variable.  The
 - **Unknown style names raise `ValueError`** when colour is enabled, so typos surface immediately.  When colour is disabled, `.wrap()` returns the text unchanged and does *not* validate the name — the point of disabling is to be a silent passthrough.
 - **`.strip()` only removes SGR sequences with a single numeric parameter** (the form this library emits).  Sequences with `;`-separated parameter lists are emitted by `.wrap()` when composing styles, and the stripper *does* handle those; richer sequences from other libraries may survive stripping.  This is intentional: a broader regex risks eating non-SGR CSI sequences.
 - **`Style.wrap("text", "") is a no-op**, not an error.  Conditional formatting often produces an empty name string; treating it as a pass-through keeps call sites simple.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
