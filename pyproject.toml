@@ -1,6 +1,6 @@
 [project]
 name = "ansi-style"
-version = "0.1.1"
+version = "0.1.2"
 description = "Terminal colour and style helpers that detect a dumb terminal."
 requires-python = ">=3.10"
 dependencies = []
